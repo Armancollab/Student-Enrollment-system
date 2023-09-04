@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .body-text {
+            display: flex;
+            font-family: "Montserrat", sans-serif;
+            align-items: center;
+            justify-content: center;
+            margin-top: 250px;
+        }
+
+        .navbar {
+            padding: 10px 20px; /* Adjust the padding as needed */
+            background-color: rgba(0, 0, 0, 0.573); /* Change the background color */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .navbar-brand {
+            color: white; /* Change the text color */
+            font-size: 20px; /* Increase the font size */
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .nav-item {
+            margin: 0 10px; /* Add some spacing between navigation items */
+            padding-left: 150px;
+        }
+
+        .nav-link {
+            color: white; /* Change the text color */
+            font-size: 16px; /* Increase the font size */
+            transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FFFFFF; /* Change the text color on hover */
+            background-color: #388E3C; /* Change the background color on hover */
+            transform: scale(1.05); /* Add a subtle scale effect on hover */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 25vw;
+        }
+
+        h1, p {
+            text-align: center;
+        }
+
+        /* Center the table container */
+        .table-container {
+          max-height: 600px;
+          max-width: 1300px;
+          overflow-y: auto;
+          border-radius: 5px;
+          margin: 0 auto; /* Use 'auto' for horizontal margin to center the container */
+          margin-top: -16px;
+          margin-bottom: 25px;
+        }
+
+        .table-container-2{
+          max-height: 600px;
+          max-width: 1400px;
+          overflow-y: auto;
+          border-radius: 5px;
+          margin: 0 auto; /* Use 'auto' for horizontal margin to center the container */
+          margin-top: 5px;
+          margin-bottom: 25px;
+        }
+
+        .table-container::-webkit-scrollbar {
+          width: 10px; 
+        }
+
+       
+        .table-container::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+
+      
+        .table-container::-webkit-scrollbar-thumb {
+          background: #888; ;
+          border-radius: 10px; 
+        }
+
+       
+        .table-container::-webkit-scrollbar-thumb:hover {
+          background: #4CAF50; 
+        }
+
+
+
+        .table-container-2::-webkit-scrollbar {
+          width: 10px; 
+        }
+
+       
+        .table-container-2::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+
+      
+        .table-container-2::-webkit-scrollbar-thumb {
+          background: #888; ;
+          border-radius: 10px; 
+        }
+
+       
+        .table-container-2::-webkit-scrollbar-thumb:hover {
+          background: #4CAF50; 
+        }
+
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #c2cfd6;
+        }
+
+        .table thead th {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            transition: background-color 0.2s ease; /* Add a smooth transition effect */
+        }
+
+        
+        .table thead th:hover {
+            background-color: #45a049; /* Slightly darker shade when hovering */
+        }
+
+        .table tbody+tbody {
+            border-top: 10px solid #c2cfd6;
+        }
+
+        .table .table {
+            background-color: #e4e5e6;
+        }
+
+        .table-sm th,
+        .table-sm td {
+            padding: 0.3rem;
+        }
+
+        .table-bordered {
+            border: none;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: none;
+        }
+
+        .table-bordered thead th,
+        .table-bordered thead td {
+            border-bottom-width: 2px;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: lightseagreen;
+        }
+
+        .table-primary,
+        .table-primary>th,
+        .table-primary>td {
+            background-color: #c1e7f4;
+        }
+
+        .table-hover .table-primary:hover {
+            background-color: #abdff0;
+        }
+
+        .table-hover .table-primary:hover>td,
+        .table-hover .table-primary:hover>th {
+            background-color: #abdff0;
+        }
+
+        .table-secondary,
+        .table-secondary>th,
+        .table-secondary>td {
+            background-color: #e6ebee;
+        }
+
+        .table-hover .table-secondary:hover {
+            background-color: #d7dfe4;
+        }
+
+        .table-hover .table-secondary:hover>td,
+        .table-hover .table-secondary:hover>th {
+            background-color: #d7dfe4;
+        }
+
+        .table-success,
+        .table-success>th,
+        .table-success>td {
+            background-color: #cdedd8;
+        }
+
+        .table-hover .table-success:hover {
+            background-color: #bae6c9;
+        }
+
+        .table-hover .table-success:hover>td,
+        .table-hover .table-success:hover>th {
+            background-color: #bae6c9;
+        }
+
+        .table-info,
+        .table-info>th,
+        .table-info>td {
+            background-color: #d3eef6;
+        }
+
+        .table-hover .table-info:hover {
+            background-color: #bee6f2;
+        }
+
+        .table-hover .table-info:hover>td,
+        .table-hover .table-info:hover>th {
+            background-color: #bee6f2;
+        }
+
+        .table-warning,
+        .table-warning>th,
+        .table-warning>td {
+            background-color: #ffeeba;
+        }
+
+        .table-hover .table-warning:hover {
+            background-color: #ffe8a1;
+        }
+
+        .table-hover .table-warning:hover>td,
+        .table-hover .table-warning:hover>th {
+            background-color: #ffe8a1;
+        }
+
+        .table-danger,
+        .table-danger>th,
+        .table-danger>td {
+            background-color: #fdd6d6;
+        }
+
+        .table-hover .table-danger:hover {
+            background-color: #fcbebe;
+        }
+
+        .table-hover .table-danger:hover>td,
+        .table-hover .table-danger:hover>th {
+            background-color: #fcbebe;
+        }
+
+        .table-light,
+        .table-light>th,
+        .table-light>td {
+            background-color: #fbfcfc;
+        }
+
+        .table-hover .table-light:hover {
+            background-color: #ecf1f1;
+        }
+
+        .table-hover .table-light:hover>td,
+        .table-hover .table-light:hover>th {
+            background-color: #ecf1f1;
+        }
+
+        .table-dark,
+        .table-dark>th,
+        .table-dark>td {
+            background-color: #c3c7c9;
+        }
+
+        .table-hover .table-dark:hover {
+            background-color: #b6babd;
+        }
+
+        .table-hover .table-dark:hover>td,
+        .table-hover .table-dark:hover>th {
+            background-color: #b6babd;
+        }
+
+        .table-active,
+        .table-active>th,
+        .table-active>td {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        .table-hover .table-active:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        .table-hover .table-active:hover>td,
+        .table-hover .table-active:hover>th {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+
+        .table .thead-dark th {
+            color: #e4e5e6;
+            background-color: #151b1e;
+            border-color: #252f35;
+        }
+
+        .table .thead-light th {
+            color: #3e515b;
+            background-color: #c2cfd6;
+            border-color: #c2cfd6;
+        }
+
+        .table-dark {
+            color: #e4e5e6;
+            background-color: #151b1e;
+        }
+
+        .table-dark th,
+        .table-dark td,
+        .table-dark thead th {
+            border-color: #252f35;
+        }
+
+        .table-dark.table-bordered {
+            border: 0;
+        }
+
+        .table-dark.table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .table-dark.table-hover tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.075);
+        }
+
+        @media (max-width: 575px) {
+            .table-responsive-sm {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+            }
+            .table-responsive-sm.table-bordered {
+                border: 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .table-responsive-md {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+            }
+            .table-responsive-md.table-bordered {
+                border: 0;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .table-responsive-lg {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+            }
+            .table-responsive-lg.table-bordered {
+                border: 0;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            .table-responsive-xl {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+            }
+            .table-responsive-xl.table-bordered {
+                border: 0;
+            }
+        }
+
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+
+        .table-responsive.table-bordered {
+            border: 0;
+        }
+
+        .popup-message {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: fixed;
+          top: 10%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 9999;
+        }
+
+        .alert {
+          padding: 1rem;
+          border-radius: 5px;
+          font-size: 16px;
+          max-width: 300px;
+          opacity: 0;
+          transform: translateY(-20px);
+          animation: fadeInOut 3s ease-in-out forwards;
+        }
+
+        .alert-primary {
+          background-color: #c1e7f4;
+          color: #000;
+        }
+
+        .alert-secondary {
+          background-color: #e6ebee;
+          color: #000;
+        }
+
+        .alert-success {
+          background-color: #cdedd8;
+          color: #000;
+        }
+
+        .alert-danger {
+          background-color: #fdd6d6;
+          color: #000;
+        }
+
+        .alert-info {
+          background-color: #d3eef6;
+          color: #000;
+        }
+
+        .alert-warning {
+          background-color: #ffeeba;
+          color: #000;
+        }
+
+        .alert-light {
+          background-color: #fbfcfc;
+          color: #000;
+        }
+
+        .alert-dark {
+          background-color: #c3c7c9;
+          color: #000;
+        }
+
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          15% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          85% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+        }
+
+    .action-icons {
+        display: flex;
+        align-items: center; 
+    }
+
+    .action-icons a {
+        margin-right: 10px; 
+        text-decoration: none; 
+    }
+
+    .icon-link i {
+        color: #333; 
+        font-size: 1.2em; 
+        transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+        padding: 1px; 
+        border-radius: 50%; 
+    }
+
+    .icon-link:hover i {
+        color: #FF5733; 
+    }
+
+    #searchInput {
+        max-width: 400px;
+        padding-left: 20px;
+    }
+    .input-group-prepend{
+        padding-left: 110px;
+    }
+
+    #searchInput-2 {
+        max-width: 400px;
+        padding-left: 20px;
+    }
+    .input-group-prepend-2{
+        padding-left: 60px;
+    }
+
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Student Enrollment System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link nav-box" href="/">
+                    <i class="bi bi-house-door"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-box" href="/reg">
+                    <i class="bi bi-person-plus"></i> Registration
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-box" href="/all_students">
+                    <i class="bi bi-check-circle"></i> Registered
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-box" href="/delete_stud">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

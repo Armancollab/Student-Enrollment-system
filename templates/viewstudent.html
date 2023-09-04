@@ -1,0 +1,96 @@
+{% include "base.html" %}
+
+{% block content %}
+<main>
+    <h1 style="padding-top: 20px;padding-left: 20px;">View students information</h1>
+    <br>
+    <div class="table-responsive">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+            </div>
+            <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+        </div>
+        <div class="table-container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Father's Name</th>
+                        <th scope="col">Mother's Name</th>
+                        <th scope="col">Main Address</th>
+                        <th scope="col">Previous School</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Registered Date</th>
+                    </tr>
+                </thead>
+                <tbody class="table-light">
+                    {% for stud in studs %}
+                    <tr>
+                        <th scope="row">{{stud.id}}</th>
+                        <td>{{stud.s_name}}</td>
+                        <td>{{stud.s_fathername}}</td>
+                        <td>{{stud.s_mothername}}</td>
+                        <td>{{stud.s_addr}}</td>
+                        <td>{{stud.previous_school}}</td>
+                        <td>{{stud.s_phone}}</td>
+                        <td>{{stud.s_gender}}</td>
+                        <td>{{stud.s_class}}</td>
+                        <td>{{stud.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script>
+document.getElementById('searchInput').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+        const nameCell = row.querySelector('td:nth-child(2)');
+        const fatherNameCell = row.querySelector('td:nth-child(3)');
+        const motherNameCell = row.querySelector('td:nth-child(4)');
+        const mainAddressCell = row.querySelector('td:nth-child(5)');
+        const previousSchoolCell = row.querySelector('td:nth-child(6)');
+        const phoneNumberCell = row.querySelector('td:nth-child(7)');
+        const genderCell = row.querySelector('td:nth-child(8)');
+        const classCell = row.querySelector('td:nth-child(9)');
+        const registeredDateCell = row.querySelector('td:nth-child(10)');
+
+        const name = nameCell.textContent.toLowerCase();
+        const fatherName = fatherNameCell.textContent.toLowerCase();
+        const motherName = motherNameCell.textContent.toLowerCase();
+        const mainAddress = mainAddressCell.textContent.toLowerCase();
+        const previousSchool = previousSchoolCell.textContent.toLowerCase();
+        const phoneNumber = phoneNumberCell.textContent.toLowerCase();
+        const gender = genderCell.textContent.toLowerCase();
+        const studentClass = classCell.textContent.toLowerCase();
+        const registeredDate = registeredDateCell.textContent.toLowerCase();
+
+        if (
+            name.includes(searchTerm) ||
+            fatherName.includes(searchTerm) ||
+            motherName.includes(searchTerm) ||
+            mainAddress.includes(searchTerm) ||
+            previousSchool.includes(searchTerm) ||
+            phoneNumber.includes(searchTerm) ||
+            gender.includes(searchTerm) ||
+            studentClass.includes(searchTerm) ||
+            registeredDate.includes(searchTerm)
+        ) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+
+{% endblock %}

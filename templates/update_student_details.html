@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            max-width: 1000x;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .container label,
+        .container input[type="text"] {
+            width: auto;
+            margin-bottom: 10px;
+        }
+    
+        .container select {
+            width: auto;
+            margin-bottom: 10px;
+        }
+    
+        label {
+            font-weight: bold;
+        }
+    
+        input[type="text"],
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: transparent;
+            background-image: url('arrow-down.png'); /* Add your arrow-down image */
+            background-position: right center;
+            background-repeat: no-repeat;
+            padding-right: 30px;
+        }
+    
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 150px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+    
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(.97);
+        }
+    
+    
+        .popup-message {
+            text-align: center;
+        }
+    
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+    
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+    
+</head>
+<body>
+    <main>
+        {% if messages %}
+            <div class="popup-message">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} fade-in" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <form method="post" action="{% url 'student_update' student.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="student_id" value="{{ student.id }}">
+            <div class="container">
+                <h1>Edit Student Details</h1>
+                    
+                <label for="s_name"><b>Name</b></label>
+                <input type="text" name="s_name" id="s_name" value="{{ student.s_name }}" required><br>
+                
+                <label for="s_fathername"><b>Father's name</b></label>
+                <input type="text" name="s_fathername" id="s_fathername" value="{{ student.s_fathername }}" required><br>
+                    
+                <label for="s_mothername"><b>Mother's Name</b></label>
+                <input type="text" name="s_mothername" id="s_mothername" value="{{ student.s_mothername }}" required><br>
+
+                <label for="s_addr"><b>Main Address</b></label>
+                <input type="text" name="s_addr" id="s_addr" value="{{ student.s_addr }}" required><br>
+                    
+                <label for="previous_school"><b>Previous School</b></label>
+                <input type="text" name="previous_school" id="previous_school" value="{{ student.previous_school }}" required><br>
+
+                <label for="s_phone"><b>Phone Number</b></label>
+                <input type="text" name="s_phone" id="s_phone" value="{{ student.s_phone }}" required>
+                
+                <label for="s_gender"><b>Gender</b></label>
+                <select name="s_gender" id="s_gender">
+                  <option value="">Choose Gender</option>
+                  <option value="Male" {% if student.s_gender == 'Male' %}selected{% endif %}>Male</option>
+                  <option value="Female" {% if student.s_gender == 'Female' %}selected{% endif %}>Female</option>
+                </select><br>
+                
+                <label for="s_class"><b>Class</b></label>
+                <input type="text" name="s_class" id="s_class" value="{{ student.s_class }}" required><br>
+                
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

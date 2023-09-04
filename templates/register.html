@@ -1,0 +1,28 @@
+{% include "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <div class="container" style="padding-top: 30px; background-color: #f5f5f5;">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show text-center {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="POST" style="margin-left: 0;">
+            {% csrf_token %}
+            <h1 class="text-center">Register</h1>
+            <p class="text-center">Kindly fill in this form to register.</p>
+            <br>
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

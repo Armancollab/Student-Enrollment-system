@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "base.html" %}
+
+
+<head>
+    <script src="https://kit.fontawesome.com/2a89dcfd9c.js" crossorigin="anonymous"></script>
+</head>
+<main>
+    <h1 style="padding-top: 20px; padding-left: 20px;">Edit students information</h1>
+    <br>
+        {% if messages %}
+        <div class="popup-message">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} fade-in" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% csrf_token %}
+    <div class="scrollable-table">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend-2">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+            </div>
+            <input type="text" class="form-control" id="searchInput-2" placeholder="Search...">
+        </div>
+        <div class="table-container-2"> 
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Father's Name</th>
+                        <th scope="col">Mother's Name</th>
+                        <th scope="col">Main Address</th>
+                        <th scope="col">Previous School</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Registered Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+
+                {% for stud in students %}
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ stud.id }}</th>
+                        <td>{{ stud.s_name }}</td>
+                        <td>{{ stud.s_fathername }}</td>
+                        <td>{{ stud.s_mothername }}</td>
+                        <td>{{ stud.s_addr }}</td>
+                        <td>{{ stud.previous_school }}</td>
+                        <td>{{ stud.s_phone }}</td>
+                        <td>{{ stud.s_gender }}</td>
+                        <td>{{ stud.s_class }}</td>
+                        <td>{{ stud.created_at }}</td>
+                        <td>
+
+                                <div class="action-icons">
+                                    <a href="/delete_stud/{{ stud.id }}" class="icon-link"><i class="fas fa-times"></i></a>
+                                    <a href="/update_student/{{ stud.id }}" class="icon-link"><i class="fas fa-edit"></i></a>
+                                </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <script type="text/javascript">
+                const popupMessage = document.querySelector(".popup-message");
+                if (popupMessage) {
+                  const alerts = popupMessage.querySelectorAll(".alert");
+                  const duration = 3000; // 3 seconds
+
+                  setTimeout(() => {
+                    alerts.forEach((alert) => {
+                      alert.classList.remove("fade-in");
+                      alert.classList.add("fade-out");
+                    });
+
+                    setTimeout(() => {
+                      popupMessage.remove();
+                    }, 1000);
+                  }, duration);
+                }
+
+            </script>
+        </div>
+    </div>
+</main>
+<script>
+document.getElementById('searchInput-2').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+        const nameCell = row.querySelector('td:nth-child(2)');
+        const fatherNameCell = row.querySelector('td:nth-child(3)');
+        const motherNameCell = row.querySelector('td:nth-child(4)');
+        const mainAddressCell = row.querySelector('td:nth-child(5)');
+        const previousSchoolCell = row.querySelector('td:nth-child(6)');
+        const phoneNumberCell = row.querySelector('td:nth-child(7)');
+        const genderCell = row.querySelector('td:nth-child(8)');
+        const classCell = row.querySelector('td:nth-child(9)');
+        const registeredDateCell = row.querySelector('td:nth-child(10)');
+
+        const name = nameCell.textContent.toLowerCase();
+        const fatherName = fatherNameCell.textContent.toLowerCase();
+        const motherName = motherNameCell.textContent.toLowerCase();
+        const mainAddress = mainAddressCell.textContent.toLowerCase();
+        const previousSchool = previousSchoolCell.textContent.toLowerCase();
+        const phoneNumber = phoneNumberCell.textContent.toLowerCase();
+        const gender = genderCell.textContent.toLowerCase();
+        const studentClass = classCell.textContent.toLowerCase();
+        const registeredDate = registeredDateCell.textContent.toLowerCase();
+
+        if (
+            name.includes(searchTerm) ||
+            fatherName.includes(searchTerm) ||
+            motherName.includes(searchTerm) ||
+            mainAddress.includes(searchTerm) ||
+            previousSchool.includes(searchTerm) ||
+            phoneNumber.includes(searchTerm) ||
+            gender.includes(searchTerm) ||
+            studentClass.includes(searchTerm) ||
+            registeredDate.includes(searchTerm)
+        ) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+</body>
+
+</html>
