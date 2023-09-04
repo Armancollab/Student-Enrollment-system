@@ -78,15 +78,14 @@ WSGI_APPLICATION = 'studentregistration.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'student_enrollment_db',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'verceldb', 
         'USER': 'default',
-        'PASSWORD': 'tYpx7r2GfNVE',
-        'HOST': 'ep-empty-smoke-56581414-pooler.us-east-1.postgres.vercel-storage.com', 
+        'PASSWORD': 'tYpx7r2GfNVE', 
+        'HOST': 'ep-empty-smoke-56581414-pooler.us-east-1.postgres.vercel-storage.com',
         'PORT': '5432',
     }
 }
-
 
 
 # Password validation
