@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'studentregistration.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'verceldb', 
+        'NAME': 'student_enrollment_db', 
         'USER': 'default',
         'PASSWORD': 'tYpx7r2GfNVE', 
         'HOST': 'ep-empty-smoke-56581414-pooler.us-east-1.postgres.vercel-storage.com',
