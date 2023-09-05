@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Build the Project
 
 echo "Building the Project..."
